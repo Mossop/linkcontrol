@@ -33,6 +33,7 @@ function lnkctrl_init() {
 }
 
 // These modify the internal rewrite rules
+// Currently strips the existing rewrite rules for main feeds and adds our own
 function lnkctrl_root_rewrite_rules($rules) {
   $feedbase = get_option('lnkctrl_feed_base');
 
@@ -58,6 +59,8 @@ function lnkctrl_root_rewrite_rules($rules) {
   return $rules;
 }
 
+// This is identical to sanitize_title_with_dashes however it does not change
+// the title to lowercase
 function lnkctrl_sanitize_title($title) {
   $title = strip_tags($title);
   // Preserve escaped octets.
