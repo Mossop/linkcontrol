@@ -37,12 +37,12 @@ function lnkctrl_init() {
 function lnkctrl_root_rewrite_rules($rules) {
   $feedbase = get_option('lnkctrl_feed_base');
 
-	if ( '' != $feedbase && count($rules) > 0 ) {
+  if ( '' != $feedbase && count($rules) > 0 ) {
     $feedbase = substr($feedbase, 1);
     $newrules = array();
-    $url = 'blog/feed/(feed|rdf|rss|rss2|atom)/?$';
+    $url = $feedbase . '/feed/(feed|rdf|rss|rss2|atom)/?$';
     $newrules[$url] = 'index.php?&feed=$matches[1]';
-    $url = 'blog/feed/?$';
+    $url = $feedbase . '/(feed|rdf|rss|rss2|atom)/?$';
     $newrules[$url] = 'index.php?&feed=rss2';
     foreach ($rules as $url => $rule) {
       if (preg_match('|feed|', $url) == 1) {
